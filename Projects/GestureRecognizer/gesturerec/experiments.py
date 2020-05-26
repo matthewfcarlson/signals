@@ -184,7 +184,7 @@ class ClassificationResults:
             return n_best_list_performance
         
     
-    def print_result(self):
+    def print_result(self, separate_gestures=False):
         '''
         Utility function to print results
         '''
@@ -197,7 +197,8 @@ class ClassificationResults:
         for gesture_name in self.get_gesture_names():
             correctness_cnt_for_gesture = self.get_num_correct_for_gesture(gesture_name)
             num_comparisons_for_gesture = len(self.map_gesture_name_to_list_results[gesture_name])
-            print("- {} {}/{} ({}%)".format(gesture_name, correctness_cnt_for_gesture, num_comparisons_for_gesture, 
+            if separate_gestures:
+                print("- {} {}/{} ({}%)".format(gesture_name, correctness_cnt_for_gesture, num_comparisons_for_gesture, 
                                             correctness_cnt_for_gesture/num_comparisons_for_gesture * 100))
         
         print(self.get_confusion_matrix())
